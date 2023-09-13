@@ -14,6 +14,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\ExtracurricularController;
 use App\Http\Controllers\Multi\FurniluxeController;
+use App\Models\Person;
 
 /*
 |--------------------------------------------------------------------------
@@ -161,6 +162,37 @@ Route::get('add-products', function () {
         DB::rollBack();
         return response()->json(['message' => 'Terjadi kesalahan. Transaksi dibatalkan.']);
     }
+});
+
+
+
+// Belajar Accesor mutator
+Route::get('/person', function(){
+    $person = Person::find(1);
+    // dd(ucfirst($person->name));
+});
+
+
+Route::get('/persons', function(){
+    $person = Person::find(2);
+    // dd(ucfirst($person->name));
+    // dd($person->full_name);
+    dd($person->UpperCase);
+});
+
+Route::get('/whatever', function(){
+    $person = Person::find(3);
+    dd($person->full_name);
+    // dd(ucfirst($person->name));
+});
+
+Route::get('/create-person', function(){
+    $person = Person::create([
+        'first_name' => 'hello',
+        'last_name' => 'adi',
+    ]);
+
+    dd($person);
 });
 
 
